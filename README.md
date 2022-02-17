@@ -1,3 +1,5 @@
+# Entropy Market Maker
+
 Entropy Market Maker
 Setup
 To run the market maker you will need:
