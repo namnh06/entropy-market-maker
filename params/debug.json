@@ -1,0 +1,29 @@
+{
+    "group": "devnet.2",
+    "mangoAccountPubkey": "Ci4u9Lb4rTRjzLMDQyU2D4W9AUcAS8yETApbL6gMcoU8",
+    "interval": 5000,
+    "batch": 2,
+    "assets": {
+      "SOL2": {
+        "perp": {
+          "sizePerc": 0.05,
+          "leanCoeff": 0.0005,
+          "bias": 0.0,
+          "requoteThresh": 0.0002,
+          "takeSpammers": true,
+          "spammerCharge": 2,
+          "disableFtxBook": true
+        }
+      },
+      "SOL": {
+        "perp": {
+          "sizePerc": 0.05,
+          "leanCoeff": 0.0005,
+          "bias": 0.0,
+          "requoteThresh": 0.0002,
+          "takeSpammers": true,
+          "spammerCharge": 2
+        }
+      }
+    }
+  }
