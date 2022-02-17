@@ -3,7 +3,7 @@
 ## Setup
 To run the market maker you will need:
 * A Solana account with some SOL deposited to cover transaction fees
-* A Mango Account with some collateral deposited and a name (tip: use the UI)
+* A Entropy Account with some collateral deposited and a name (tip: use the UI)
 * Your wallet keypair saved as a JSON file
 * `node` and `yarn`
 
