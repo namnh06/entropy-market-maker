@@ -1,4 +1,4 @@
-# Mango Markets Market Maker
+# Entropy Market Maker
 
 ## Setup
 To run the market maker you will need:
@@ -8,9 +8,7 @@ To run the market maker you will need:
 * `node` and `yarn`
 
 ```shell
-mkdir blockworks-foundation
-cd blockworks-foundation
-git clone https://github.com/blockworks-foundation/market-maker-ts.git
+git clone https://github.com/Friktion-Labs/entropy-market-maker
 cd market-maker-ts
 yarn install
 
