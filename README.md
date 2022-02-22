@@ -33,8 +33,8 @@ cd /etc/systemd/system
 sudo nano mm.service
 
 ## Set the systemd service file like this and replace the *** lines with your own
-***ExecStart=/home/dd/blockworks-foundation/market-maker-ts/run.sh
-***WorkingDirectory=/home/dd/blockworks-foundation/market-maker-ts/
+***ExecStart=/home/Users/entropy-market-maker/run.sh
+***WorkingDirectory=/home/dd/entropy-market-maker/
 Restart=always
 RuntimeMaxSec=1800
 RestartSec=5s
