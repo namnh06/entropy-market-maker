@@ -675,56 +675,29 @@
     {
       "cluster": "devnet",
       "name": "devnet.2",
-      "publicKey": "E9KSF2wYQ8BCuvuPwgJEn65A1Go1zsDVXaeQQGNYH4Sb",
+      "publicKey": "4tXGwj97X9Xi6KGt9dZiiMuHp7LjbJrWQR3kBAEme9Pn",
       "quoteSymbol": "USDC",
       "mangoProgramId": "4AFs3w5V5J9bDLEcNMEobdG3W4NYmXFgTe4KS41HBKqa",
       "serumProgramId": "DESVgJVGajEgKGXhb6XmqDHGz3VjdgP7rEVESBgxmroY",
       "tokens": [
         {
           "symbol": "USDC",
-          "mintKey": "8FRFC6MoGGkMFQwngccyu69VnYbzykGeez7ignHVAFSN",
+          "mintKey": "EDAgjAqGP39wRLZ4yqWJyNb1AExbzcvX12zNe9b89b9G",
           "decimals": 6,
-          "rootKey": "J5GwAVnRawuqYKE5nqkCid9wRrqzB57DbL2BAZqGJ1G9",
+          "rootKey": "7zaE8Dqdux5seQbCdE7xFbRuLsJzQvp2vVLEBYk7haQM",
           "nodeKeys": [
-            "CDNLCqZFQxQVuX5qek5F737uuLhy26FqbaNwqfU6cPds"
-          ]
-        },
-        {
-          "symbol": "MNGO",
-          "mintKey": "Bb9bsTQa1bGEtQ5KagGkvSHyuLqDWumFUcRqFusFNJWC",
-          "decimals": 6,
-          "rootKey": "4MytDeoBqVa4ZXQ8fEdgLxaoc9tawAuSgJ1s1pw1zee7",
-          "nodeKeys": [
-            "EETv7KigFJeA8sUyBDJ8ajXec1cCuEksBMDLjWeAkEcQ"
-          ]
-        },
-        {
-          "symbol": "BTC",
-          "mintKey": "3UNBZ6o52WTWwjac2kPUb4FyodhU1vFkRJheu1Sh2TvU",
-          "decimals": 6,
-          "rootKey": "2xEqxBVf9gUDhb2kxLoMj6Q7EMAvcrWE431DAXAoL2wS",
-          "nodeKeys": [
-            "6PkBcPrZ43mSGPKx63gB79cgEQdwzskQsKDA12gC8ebF"
-          ]
-        },
-        {
-          "symbol": "SOL",
-          "mintKey": "So11111111111111111111111111111111111111112",
-          "decimals": 9,
-          "rootKey": "4cqBKgqK4adpiqcrbqD1g4SoUGF6hHePprbtgtbhfJSp",
-          "nodeKeys": [
-            "9T7L6AGhaRcQPz1PjoKwGCgGErbTTbV8ZDs715rUYJud"
+            "2dpZfyrPwddddafieMh6WqFsUuGXT2qd7SBBELFcdjHB"
           ]
         }
       ],
       "oracles": [
         {
-          "symbol": "MNGO",
-          "publicKey": "8k7F9Xb36oFJsjpCKpsXvg4cgBRoZtwNTc3EzG5Ttd2o"
-        },
-        {
           "symbol": "BTC",
           "publicKey": "8SXvChNYFhRq4EZuZvnhjrB3jJRQCv4k3P4W6hesH3Ee"
+        },
+        {
+          "symbol": "ETH",
+          "publicKey": "EdVCmQ9FSPcVe5YySXDPCRmc8aDQLKJ9xvYBMZPie1Vw"
         },
         {
           "symbol": "SOL",
@@ -742,84 +715,61 @@
       "perpMarkets": [
         {
           "name": "BTC-PERP",
-          "publicKey": "FWvc72WitJpLD3ECbbhN9xeyg4MksskAEoBKwjWcVBZP",
+          "publicKey": "8Mwvan9dMGEKgR5W4CEeSyukXuDG2WkziYwdE581g3U7",
           "baseSymbol": "BTC",
           "baseDecimals": 6,
           "quoteDecimals": 6,
+          "marketIndex": 0,
+          "bidsKey": "9eoe6pJqwJHYG4D6ny9iB3Y6At9AwntgePmb69dCeSeS",
+          "asksKey": "2wnK2Vt7jCUitWWNr3JgERZJVUwWWLfXxbbmUr9yPJAr",
+          "eventsKey": "DQ58mTuqMM2c4oRufhv6ADFaJGu31bGuZA4XEHZhrdnq"
+        },
+        {
+          "name": "ETH-PERP",
+          "publicKey": "A3ia3ca1wF1knC1SMXoZz8fsV3RiqYtMCqzLPdM28rUG",
+          "baseSymbol": "ETH",
+          "baseDecimals": 6,
+          "quoteDecimals": 6,
           "marketIndex": 1,
-          "bidsKey": "D4sr9oAPoLkhEmAfS9d16p76M8JCg6qMGHrwtnW3ufxy",
-          "asksKey": "EhShpsv3iL27efiNyqgtfGRCBn8UuSeHjBSMk1H5QnDt",
-          "eventsKey": "4ZxZzLifHe28uiF5zSnNHUMUiJxy7N7aAwuQpxErMQCW"
+          "bidsKey": "9FPrsGRhFxDcwqt4CvFwt2tnfQiEK6YwCMcRLeJMi7vM",
+          "asksKey": "3BxxCoHUGuBuCTD4jDhfS2H4y74bWUdhE3Jj5YvnpUhu",
+          "eventsKey": "2kMwhjZL9xoFvZEh9pMY2JGcBboxfvJgbt2ogmn34KAy"
         },
         {
           "name": "SOL-PERP",
-          "publicKey": "6kLEQaZ1gi2YV8g2HWygxujgFpxAuzD2EQaM72uFXevr",
+          "publicKey": "D1bNjRfg4XsRRbXhZktwwZfYk55Sfmh8cm1HFNWWKr39",
           "baseSymbol": "SOL",
-          "baseDecimals": 9,
+          "baseDecimals": 6,
           "quoteDecimals": 6,
           "marketIndex": 2,
-          "bidsKey": "8ywZUQsL8d1cf4DKDdtX6PFwPmiTCeVCA6d8qWdPBmDm",
-          "asksKey": "AtRXXrPiaY5utRct76xKbyZkumcv784TuZARjU9cGfuo",
-          "eventsKey": "ErafMWFDR1gN114jabdC7sDQs231iy8aDR29mN5EgRsD"
+          "bidsKey": "GRXQ92zxveKAyxWB4zNT4ndxJX94RTxR8KMuSfg7Rwwy",
+          "asksKey": "AKNVQqC3JMNDgDFxG4qKfhT2Qb4ZPADEH3wjHoWBZ6Ez",
+          "eventsKey": "3Uh8KbvAZU6fh8farMhZcbjUcdQudAFW9Vn7YD48pXfB"
         },
         {
           "name": "SOL2-PERP",
-          "publicKey": "Hb5aZGDzPj1cgzpFJAuxzjJR4ocF9wSo3ZzyLAs2s3b5",
+          "publicKey": "BKNpu7e47455YvG15Le8RM3TYzapNzPFJRqRtgw1sRKE",
           "baseSymbol": "SOL2",
           "baseDecimals": 6,
           "quoteDecimals": 6,
           "marketIndex": 3,
-          "bidsKey": "81yspafirzPHd2KKtmwxj6UHN8fR5b1QsWgjqHNXMSBs",
-          "asksKey": "EmzwtXPLPDtNtVzrvNGVGdwH4sEyaq3BiHpWmeUCUdDu",
-          "eventsKey": "6NH4YUNqCd8NebJv2112uZG7CBBUaNckKYdpAE4mZaBz"
+          "bidsKey": "rrLZ7gRNr77Mx1ZbjW6qQ6Z6fwzjpsVaSjiiMrSbUvF",
+          "asksKey": "2ncdbWD57X9rU4fpEN31PvintV3TnjizUvZr5J4rroQC",
+          "eventsKey": "2vMhFMdUYEWTc38UiHog3EhL7GHtoQoZja9c2c3yvHCA"
         },
         {
           "name": "GVOL7D-PERP",
-          "publicKey": "8G3AA74fk8cpbdHAZRbFZgCGBTWFipcMkCvAR3w1Jb8X",
+          "publicKey": "3wdBwvcoQJujYvFU7NEyRF11PspTUejfX7UykbivrYj1",
           "baseSymbol": "GVOL7D",
           "baseDecimals": 6,
           "quoteDecimals": 6,
           "marketIndex": 4,
-          "bidsKey": "AzFNLnqgSwYpi5vFdGakxZAxdgCAuQ2QP4XC8PvTeUrJ",
-          "asksKey": "vtaBQ9zipHYoazx8H1UmoZCfHh9YNH7dmZNvz1ekQt5",
-          "eventsKey": "E4geKUeJeQwRmceNMaPFCDy89wbUtv2nFN7GEZhQcwLi"
+          "bidsKey": "AqiMEqvErNVj9bysSS1HAQx9Epn46o8VsvXFbjRtUUgG",
+          "asksKey": "DTsAVodnX1UDfaKPVZmZ16U1G3eZ38eMMzqwzpAU2cD5",
+          "eventsKey": "HVDnxekefnzd6zAJHnwGgEepqMS56L27rSZUvgH39CQd"
         }
       ],
-      "spotMarkets": [
-        {
-          "name": "MNGO/USDC",
-          "publicKey": "4is1t9USEid3tuvb5x1KxfpxbJ7wbLuveCYpEy78XRST",
-          "baseSymbol": "MNGO",
-          "baseDecimals": 6,
-          "quoteDecimals": 6,
-          "marketIndex": 0,
-          "bidsKey": "3XMLNwCVbdS6JiVBTwNCbJJNSrazn7KLjZXDgsgA6a65",
-          "asksKey": "wTZwkaRvLG1AAan5Tf5TYCrTj6Kd2Hou527tFq3uWRd",
-          "eventsKey": "8xB6isPVcDQMddUyUZ1uNqZTvAamT9mb2XXMvzsB5D9X"
-        },
-        {
-          "name": "BTC/USDC",
-          "publicKey": "7LJEN31hYSUFHQFaBs2ESQ31BTuPuBAjjjrK3dB7rSGj",
-          "baseSymbol": "BTC",
-          "baseDecimals": 6,
-          "quoteDecimals": 6,
-          "marketIndex": 1,
-          "bidsKey": "DxfKGaz2zZEmn5Azf9vP8REhyPbMpz3JJJmCxqVxQfSn",
-          "asksKey": "G1yqMayQqaK1UDHoKQXUKNb38q8rFpLScQ2dxGTKftg",
-          "eventsKey": "9tc45bFUbsSbuDuLJePUXG4yXmubeRcMoAQG5pKMX5Fi"
-        },
-        {
-          "name": "SOL/USDC",
-          "publicKey": "4EH8hJUaF4VnqPmCJVCJDTTWR6MdQeDP1dBohTx3wtM4",
-          "baseSymbol": "SOL",
-          "baseDecimals": 9,
-          "quoteDecimals": 6,
-          "marketIndex": 2,
-          "bidsKey": "783udVy76pAMWY3J9kgUj9GNz6Se7GJCvyRrRVbvGhuo",
-          "asksKey": "Am4eA9d77xzzpddHgLK9uxDxwxZEXzJeNzjihsqodLJk",
-          "eventsKey": "7MKiFEahWxr7K3XqFVZa46BcFZe749wJ1j4ETUDUst9P"
-        }
-      ]
+      "spotMarkets": []
     }
   ]
 }
