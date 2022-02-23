@@ -14,7 +14,7 @@ yarn install
 
 ## Open .env file and set env vars like this example ##
 export KEYPAIR=~/.config/solana/id.json
-export ENDPOINT_URL="https://mango.rpcpool.com/946ef7337da3f5b8d3e4a34e7f88"
+export ENDPOINT_URL="https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899"
 export PARAMS=default.json
 
 ## Set mangoAccountName in params file to reflect the name of your MangoAccount
