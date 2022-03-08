@@ -25,7 +25,7 @@
     "cross-env": "^7.0.2",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^7.2.0",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.1",
     "prettier": "^2.0.5",
     "ts-node": "^9.1.1",
     "typedoc": "^0.22.5",
@@ -39,7 +39,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@blockworks-foundation/mango-client": "git+https://github.com/blockworks-foundation/mango-client-v3.git",
+    "@blockworks-foundation/mango-client": "git+https://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@github.com/Friktion-Labs/entropy-client.git#main",
     "@project-serum/anchor": "^0.16.2",
     "@project-serum/serum": "0.13.55",
     "@project-serum/sol-wallet-adapter": "^0.2.0",

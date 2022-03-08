@@ -1,14 +1,14 @@
 {
-    "group": "devnet.2",
-    "mangoAccountPubkey": "EtBNcaeexuwtQAdBC89CtxMA33NShwwAs8jUBLV5vqbR",
-    "interval": 1000,
-    "take_max_sizePerc": 0.05,
+    "group": "mainnet.2",
+    "mangoAccountPubkey": "jjZUABguaZq5pJTXQWJCEhYxNSGXTWp16N3VfoirQJE",
+    "interval": 10000,
+    "take_max_sizePerc": 0.2,
     "buy_sell_skew": 0.5,
     "batch": 2,
     "assets": {
       "BTC": {
         "perp": {
-          "sizePerc": 0.05,
+          "sizePerc": 1,
           "leanCoeff": 0.00025,
           "bias": 0.0,
           "requoteThresh": 0.0002,
@@ -16,19 +16,9 @@
           "spammerCharge": 2
         }
       },
-      "SOL": {
+      "BTC^2": {
         "perp": {
-          "sizePerc": 0.05,
-          "leanCoeff": 0.0005,
-          "bias": 0.0,
-          "requoteThresh": 0.0002,
-          "takeSpammers": true,
-          "spammerCharge": 2
-        }
-      },
-      "SOL2": {
-        "perp": {
-          "sizePerc": 0.05,
+          "sizePerc": 1,
           "leanCoeff": 0.0005,
           "bias": 0.0,
           "requoteThresh": 0.0002,
@@ -37,9 +27,9 @@
           "disableFtxBook": true
         }
       },
-      "GVOL7D": {
+      "BTC_1D_IV": {
         "perp": {
-          "sizePerc": 0.05,
+          "sizePerc": 1,
           "leanCoeff": 0.0005,
           "bias": 0.0,
           "requoteThresh": 0.0002,
