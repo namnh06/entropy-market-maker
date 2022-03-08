@@ -1,4 +1,8 @@
 # Entropy Market Maker
+
+This repo contains a simple typescript market making bot for Entropy. 
+NOTE: This version does not include delta hedging for the power perps currently
+
 Docs:
 https://org-docs.friktion.fi/entropy/market-making-bot-python/overview
 
@@ -43,3 +47,5 @@ ts-node src/mm2.ts
 | `ftxSize`           | `100000`    | How much to look up spread on centralized exchange                                |
 | `disableFtxBooks`   | `false`     | Whether to try to find a FTX market for quoting.                                  |
 
+## Caveats
+- Use Ctrl-C to stop the market maker so that it will try to cancel all orders when exiting. (Ctrl-Z will not cancel orders)
