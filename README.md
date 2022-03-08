@@ -1,7 +1,9 @@
 # Entropy Market Maker
-
+Docs:
 https://org-docs.friktion.fi/entropy/market-making-bot-python/overview
-entropy.trade
+
+Trade:
+https://entropy.trade
 
 ## Setup
 To run the market maker you will need:
