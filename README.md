@@ -25,38 +25,6 @@ yarn install
 ts-node src/mm2.ts
 ```
 
-## Run via systemd
-If you're running the market maker on a server, you might want to run it via systemd to have auto restarts
-```shell
-chmod 755 run.sh
-cd /etc/systemd/system
-sudo nano mm.service
-
-## Set the systemd service file like this and replace the *** lines with your own
-***ExecStart=/home/Users/entropy-market-maker/run.sh
-***WorkingDirectory=/home/dd/entropy-market-maker/
-Restart=always
-RuntimeMaxSec=1800
-RestartSec=5s
-LimitNOFILE=4096
-IgnoreSIGPIPE=false
-KillMode=control-group
-***User=dd
-
-sudo systemctl daemon-reload
-sudo systemctl start mm.service
-```
-
-You can watch the log output with:
-```shell
-journalctl -f -u mm.service
-```
-
-And stop the mm:
-```shell
-sudo systemctl stop mm.service
-```
-
 
 ## Environment Variables
 | Variable | Default | Description |
