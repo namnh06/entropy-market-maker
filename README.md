@@ -26,14 +26,6 @@ ts-node src/mm2.ts
 ```
 
 
-## Environment Variables
-| Variable | Default | Description |
-| -------- | ------- | ----------- |
-| `ENDPOINT_URL` | `https://mango.rpcpool.com` | Your RPC node endpoint |
-| `KEYPAIR` | `${HOME}/.config/solana/id.json` | The location of your wallet keypair |
-| `PARAMS` | `default.json` | params file |
-
-
 ## Market Maker Params
 ### See params/default.json for an example
 | Variable            | Default     | Description                                                                       |
