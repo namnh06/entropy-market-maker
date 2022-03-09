@@ -1,0 +1,43 @@
+{
+    "group": "mainnet.2",
+    "mangoAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
+    "interval": 2000,
+    "batch": 2,
+    "assets": {
+        "BTC^2": {
+            "perp": {
+                "sizePerc": 0.4,
+                "leanCoeff": 0.05,
+                "bias": 0.0,
+                "requoteThresh": 0.0005,
+                "takeSpammers": true,
+                "spammerCharge": 2,
+                "disableFtxBook": true,
+                "edge": 0.004
+            }
+        },
+        "BTC": {
+            "perp": {
+              "sizePerc": 0,
+              "leanCoeff": 0.01,
+              "bias": 0.0,
+              "requoteThresh": 0.0005,
+              "takeSpammers": true,
+              "spammerCharge": 2,
+              "edge": 0.001
+            }
+          },
+          "BTC_1D_IV": {
+            "perp": {
+              "sizePerc": 0,
+              "leanCoeff": 0.001,
+              "bias": 0.0,
+              "requoteThresh": 0.0005,
+              "takeSpammers": true,
+              "spammerCharge": 2,
+              "disableFtxBook": true,
+              "edge": 0.02
+            }
+          }
+    }
+}
