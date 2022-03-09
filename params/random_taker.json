@@ -1,8 +1,8 @@
 {
     "group": "mainnet.2",
-    "mangoAccountPubkey": "7c7YN1bvBtYMMDcJPshMCHytKn5ibVg4RctGFa3auKzZ",
-    "interval": 15000,
-    "take_max_sizePerc": 0.2,
+    "mangoAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
+    "interval": 50000,
+    "take_max_sizePerc": 0.1,
     "buy_sell_skew": 0.5,
     "batch": 2,
     "assets": {

@@ -75,6 +75,7 @@ import {
     ),
   );
   
+  // Read market addresses from entropy client repo. 
   const config = new Config(IDS);
   
   const groupIds = config.getGroupWithName(params.group) as GroupConfig;
