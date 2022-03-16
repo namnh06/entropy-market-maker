@@ -31,7 +31,7 @@ import {
     PerpMarketConfig,
     sleep,
     zeroKey,
-  } from '@blockworks-foundation/mango-client';
+  } from '@friktion-labs/entropy-client';
   import { OpenOrders } from '@project-serum/serum';
   import path from 'path';
   import {

@@ -14,7 +14,7 @@ import {
   GroupConfig,
   IDS,
   MangoClient,
-} from '@blockworks-foundation/mango-client';
+} from '@friktion-labs/entropy-client';
 import {
   makeCheckAndSetSequenceNumberInstruction,
   makeInitSequenceInstruction,

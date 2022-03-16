@@ -8,7 +8,7 @@ import {
   MangoAccount,
   MangoClient,
   MangoGroup,
-} from '@blockworks-foundation/mango-client';
+} from '@friktion-labs/entropy-client';
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey';
 import {
   blob,
