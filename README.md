@@ -13,15 +13,15 @@ https://entropy.trade
 To run the market maker you will need:
 * A Solana account with some SOL deposited to cover transaction fees
 * A Entropy Account with some collateral deposited and a name (tip: use the UI)
-* Your wallet keypair saved as a JSON file
-* `node` and `yarn`
+* Your wallet keypair saved as a JSON file at `homedir() + '/.config/solana/entropy-mainnet-authority.json'`
+* `node`, `ts-node`, and `yarn`
 
 ```shell
 git clone https://github.com/Friktion-Labs/entropy-market-maker
-cd market-maker-ts
+cd entropy-market-maker
 yarn install
 
-## Set mangoAccountName in entropy-market-maker/params/quote_params.json file to reflect the name of your MangoAccount
+## Set mangoAccountName in entropy-market-maker/params/quote_params.json file to reflect the name of your Entropy Account
 ```
 
 ## Run via terminal
@@ -36,8 +36,8 @@ ts-node src/mm2.ts
 |---------------------|-------------|-----------------------------------------------------------------------------------|
 | `group`             | `mainnet.1` | Name of the group in ids.json                                                     |
 | `interval`          | `10000`     | Milliseconds to wait before updating quotes                                       |
-| `mangoAccountName`  | N/A         | The MangoAccount name you input when initializing the MangoAccount via UI         |
-| `mangoAccountPubkey` | N/A        | If no MangoAccount name, just pass in the pubkey                                  |
+| `mangoAccountName`  | N/A         | The Entropy Account name you input when initializing the Account via UI           |
+| `mangoAccountPubkey` | N/A        | If no Account name, just pass in the pubkey                                       |
 | `assets`            | N/A         | Mapping of symbols to trade and their specific params                             |
 | `size_perc`         | `0.1`       | The size of each order as a percentage of equity                                  |
 | `edge`              | `0.0010`    | How much to increase quote width from centralized exchange                        |
