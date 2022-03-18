@@ -1,7 +1,7 @@
 {
-  "name": "market-marker",
+  "name": "entropy-market-maker",
   "version": "1.0.0",
-  "repository": "git@github.com:blockworks-foundation/market-maker-ts.git",
+  "repository": "git@github.com:Friktion-Labs/entropy-market-maker.git",
   "license": "MIT",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
