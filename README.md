@@ -34,7 +34,7 @@ ts-node src/mm2.ts
 ### See params/default.json for an example
 | Variable            | Default     | Description                                                                       |
 |---------------------|-------------|-----------------------------------------------------------------------------------|
-| `group`             | `mainnet.1` | Name of the group in ids.json                                                     |
+| `group`             | `mainnet.2` | Name of the group in ids.json                                                     |
 | `interval`          | `10000`     | Milliseconds to wait before updating quotes                                       |
 | `entropyAccountName`  | N/A         | The Entropy Account name you input when initializing the Account via UI           |
 | `entropyAccountPubkey` | N/A        | If no Account name, just pass in the pubkey                                       |
