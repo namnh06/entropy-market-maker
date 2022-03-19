@@ -13,7 +13,7 @@ import {
   getUnixTs,
   GroupConfig,
   IDS,
-  MangoClient,
+  EntropyClient,
 } from '@friktion-labs/entropy-client';
 import {
   makeCheckAndSetSequenceNumberInstruction,
@@ -44,7 +44,7 @@ async function scratch() {
   if (!groupIds) {
     throw new Error(`Group ${'mainnet.1'} not found`);
   }
-  const mangoProgramId = groupIds.mangoProgramId;
+  const entropyProgramId = groupIds.entropyProgramId;
   const sym = 'LUNA-PERP';
 
   const [sequenceAccount, bump] = findProgramAddressSync(
@@ -53,7 +53,7 @@ async function scratch() {
   );
 
   console.log(payer.publicKey.toString());
-  const client = new MangoClient(connection, mangoProgramId);
+  const client = new EntropyClient(connection, entropyProgramId);
   const tx = new Transaction();
   const instr = makeInitSequenceInstruction(
     sequenceAccount,

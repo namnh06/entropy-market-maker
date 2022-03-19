@@ -21,7 +21,7 @@ git clone https://github.com/Friktion-Labs/entropy-market-maker
 cd entropy-market-maker
 yarn install
 
-## Set mangoAccountName in entropy-market-maker/params/quote_params.json file to reflect the name of your Entropy Account
+## Set entropyAccountName in entropy-market-maker/params/quote_params.json file to reflect the name of your Entropy Account
 ```
 
 ## Run via terminal
@@ -36,8 +36,8 @@ ts-node src/mm2.ts
 |---------------------|-------------|-----------------------------------------------------------------------------------|
 | `group`             | `mainnet.1` | Name of the group in ids.json                                                     |
 | `interval`          | `10000`     | Milliseconds to wait before updating quotes                                       |
-| `mangoAccountName`  | N/A         | The Entropy Account name you input when initializing the Account via UI           |
-| `mangoAccountPubkey` | N/A        | If no Account name, just pass in the pubkey                                       |
+| `entropyAccountName`  | N/A         | The Entropy Account name you input when initializing the Account via UI           |
+| `entropyAccountPubkey` | N/A        | If no Account name, just pass in the pubkey                                       |
 | `assets`            | N/A         | Mapping of symbols to trade and their specific params                             |
 | `size_perc`         | `0.1`       | The size of each order as a percentage of equity                                  |
 | `edge`              | `0.0010`    | How much to increase quote width from centralized exchange                        |

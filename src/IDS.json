@@ -1,6 +1,6 @@
 {
   "cluster_urls": {
-    "devnet": "https://mango.devnet.rpcpool.com",
+    "devnet": "https://entropy.devnet.rpcpool.com",
     "localnet": "http://127.0.0.1:8899",
     "mainnet": "https://friktion.rpcpool.com/132d5fccfadee1fd0c2fce38aa14",
     "testnet": "https://testnet.solana.com"
@@ -11,7 +11,7 @@
       "name": "mainnet.2",
       "publicKey": "EAhqxJge6VCXH5KaPEmDzz4DoKGfHgCotmpC8xGvBju2",
       "quoteSymbol": "USDC",
-      "mangoProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
+      "entropyProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
       "serumProgramId": "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
       "tokens": [
         {
@@ -80,7 +80,7 @@
       "name": "mainnet.1",
       "publicKey": "DXkAY6dXDuY13K1gd7WwW6ZMC4nH1GC9MoCDsWRWmooP",
       "quoteSymbol": "USDC",
-      "mangoProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
+      "entropyProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
       "serumProgramId": "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
       "tokens": [
         {

@@ -5,9 +5,9 @@ import {
   TransactionInstruction,
 } from '@solana/web3.js';
 import {
-  MangoAccount,
-  MangoClient,
-  MangoGroup,
+  EntropyAccount,
+  EntropyClient,
+  EntropyGroup,
 } from '@friktion-labs/entropy-client';
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey';
 import {
@@ -30,43 +30,43 @@ import fs, { readFileSync } from 'fs';
 import { createHash } from 'crypto';
 import { BN } from 'bn.js';
 
-export async function loadMangoAccountWithName(
-  client: MangoClient,
-  mangoGroup: MangoGroup,
+export async function loadEntropyAccountWithName(
+  client: EntropyClient,
+  entropyGroup: EntropyGroup,
   payer: Account,
-  mangoAccountName: string,
-): Promise<MangoAccount> {
-  const ownerAccounts = await client.getMangoAccountsForOwner(
-    mangoGroup,
+  entropyAccountName: string,
+): Promise<EntropyAccount> {
+  const ownerAccounts = await client.getEntropyAccountsForOwner(
+    entropyGroup,
     payer.publicKey,
     true,
   );
 
   for (const ownerAccount of ownerAccounts) {
-    if (mangoAccountName === ownerAccount.name) {
+    if (entropyAccountName === ownerAccount.name) {
       return ownerAccount;
     }
   }
-  throw new Error(`mangoAccountName: ${mangoAccountName} not found`);
+  throw new Error(`entropyAccountName: ${entropyAccountName} not found`);
 }
 
-export async function loadMangoAccountWithPubkey(
-  client: MangoClient,
-  mangoGroup: MangoGroup,
+export async function loadEntropyAccountWithPubkey(
+  client: EntropyClient,
+  entropyGroup: EntropyGroup,
   payer: Account,
-  mangoAccountPk: PublicKey,
-): Promise<MangoAccount> {
-  const mangoAccount = await client.getMangoAccount(
-    mangoAccountPk,
-    mangoGroup.dexProgramId,
+  entropyAccountPk: PublicKey,
+): Promise<EntropyAccount> {
+  const entropyAccount = await client.getEntropyAccount(
+    entropyAccountPk,
+    entropyGroup.dexProgramId,
   );
 
-  if (!mangoAccount.owner.equals(payer.publicKey)) {
+  if (!entropyAccount.owner.equals(payer.publicKey)) {
     throw new Error(
-      `Invalid MangoAccount owner: ${mangoAccount.owner.toString()}; expected: ${payer.publicKey.toString()}`,
+      `Invalid EntropyAccount owner: ${entropyAccount.owner.toString()}; expected: ${payer.publicKey.toString()}`,
     );
   }
-  return mangoAccount;
+  return entropyAccount;
 }
 export const seqEnforcerProgramId = new PublicKey(
   'GDDMwNyyx8uB6zrqwBFHjLLG3TBYk2F8Az4yrQC5RzMp',

@@ -1,6 +1,6 @@
 {
     "group": "mainnet.2",
-    "mangoAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
+    "entropyAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
     "interval": 50000,
     "take_max_sizePerc": 0.1,
     "buy_sell_skew": 0.5,

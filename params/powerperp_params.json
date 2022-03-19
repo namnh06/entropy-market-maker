@@ -1,6 +1,6 @@
 {
     "group": "mainnet.2",
-    "mangoAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
+    "entropyAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
     "interval": 2000,
     "batch": 2,
     "assets": {

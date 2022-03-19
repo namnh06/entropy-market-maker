@@ -20,12 +20,12 @@ import {
     GroupConfig,
     makeCancelAllPerpOrdersInstruction,
     makePlacePerpOrderInstruction,
-    MangoAccount,
-    MangoAccountLayout,
-    MangoCache,
-    MangoCacheLayout,
-    MangoClient,
-    MangoGroup,
+    EntropyAccount,
+    EntropyAccountLayout,
+    EntropyCache,
+    EntropyCacheLayout,
+    EntropyClient,
+    EntropyGroup,
     ONE_BN,
     PerpMarket,
     PerpMarketConfig,
@@ -35,8 +35,8 @@ import {
   import { OpenOrders } from '@project-serum/serum';
   import path from 'path';
   import {
-    loadMangoAccountWithName,
-    loadMangoAccountWithPubkey,
+    loadEntropyAccountWithName,
+    loadEntropyAccountWithPubkey,
     makeCheckAndSetSequenceNumberInstruction,
     makeInitSequenceInstruction,
     seqEnforcerProgramId,
@@ -79,10 +79,10 @@ import {
   }
   const cluster = groupIds.cluster as Cluster;
   console.log("cluster: ", cluster);
-  const mangoProgramId = new PublicKey("FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5");
-  // const mangoProgramId = groupIds.mangoProgramId;
-  const mangoGroupKey = groupIds.publicKey;
-  console.log("programId: ",  mangoProgramId);
+  const entropyProgramId = new PublicKey("FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5");
+  // const entropyProgramId = groupIds.entropyProgramId;
+  const entropyGroupKey = groupIds.publicKey;
+  console.log("programId: ",  entropyProgramId);
   const control = { isRunning: true, interval: params.interval, take_pct_limit: params.take_max_sizePerc, take_max_sizePerc: params.take_max_sizePerc, buy_sell_skew: params.buy_sell_skew};
   
   type MarketContext = {
@@ -121,23 +121,23 @@ import {
    */
   async function listenAccountAndMarketState(
     connection: Connection,
-    group: MangoGroup,
+    group: EntropyGroup,
     state: {
-      cache: MangoCache;
-      mangoAccount: MangoAccount;
+      cache: EntropyCache;
+      entropyAccount: EntropyAccount;
       marketContexts: MarketContext[];
     },
     stateRefreshInterval: number,
   ) {
     while (control.isRunning) {
       try {
-        const inBasketOpenOrders = state.mangoAccount
+        const inBasketOpenOrders = state.entropyAccount
           .getOpenOrdersKeysInBasket()
           .filter((pk) => !pk.equals(zeroKey));
   
         const allAccounts = [
-          group.mangoCache,
-          state.mangoAccount.publicKey,
+          group.entropyCache,
+          state.entropyAccount.publicKey,
           ...inBasketOpenOrders,
           ...state.marketContexts.map(
             (marketContext) => marketContext.market.bids,
@@ -150,14 +150,14 @@ import {
         const ts = getUnixTs() / 1000;
         const accountInfos = await getMultipleAccounts(connection, allAccounts);
   
-        const cache = new MangoCache(
+        const cache = new EntropyCache(
           accountInfos[0].publicKey,
-          MangoCacheLayout.decode(accountInfos[0].accountInfo.data),
+          EntropyCacheLayout.decode(accountInfos[0].accountInfo.data),
         );
   
-        const mangoAccount = new MangoAccount(
+        const entropyAccount = new EntropyAccount(
           accountInfos[1].publicKey,
-          MangoAccountLayout.decode(accountInfos[1].accountInfo.data),
+          EntropyAccountLayout.decode(accountInfos[1].accountInfo.data),
         );
         const openOrdersAis = accountInfos.slice(
           2,
@@ -165,10 +165,10 @@ import {
         );
         for (let i = 0; i < openOrdersAis.length; i++) {
           const ai = openOrdersAis[i];
-          const marketIndex = mangoAccount.spotOpenOrders.findIndex((soo) =>
+          const marketIndex = entropyAccount.spotOpenOrders.findIndex((soo) =>
             soo.equals(ai.publicKey),
           );
-          mangoAccount.spotOpenOrdersAccounts[marketIndex] =
+          entropyAccount.spotOpenOrdersAccounts[marketIndex] =
             OpenOrders.fromAccountInfo(
               ai.publicKey,
               ai.accountInfo,
@@ -203,7 +203,7 @@ import {
             );
           });
   
-        state.mangoAccount = mangoAccount;
+        state.entropyAccount = entropyAccount;
         state.cache = cache;
       } catch (e) {
         console.error(
@@ -217,26 +217,26 @@ import {
   }
   
   /**
-   * Load MangoCache, MangoAccount and Bids and Asks for all PerpMarkets using only
+   * Load EntropyCache, EntropyAccount and Bids and Asks for all PerpMarkets using only
    * one RPC call.
    */
   async function loadAccountAndMarketState(
     connection: Connection,
-    group: MangoGroup,
-    oldMangoAccount: MangoAccount,
+    group: EntropyGroup,
+    oldEntropyAccount: EntropyAccount,
     marketContexts: MarketContext[],
   ): Promise<{
-    cache: MangoCache;
-    mangoAccount: MangoAccount;
+    cache: EntropyCache;
+    entropyAccount: EntropyAccount;
     marketContexts: MarketContext[];
   }> {
-    const inBasketOpenOrders = oldMangoAccount
+    const inBasketOpenOrders = oldEntropyAccount
       .getOpenOrdersKeysInBasket()
       .filter((pk) => !pk.equals(zeroKey));
   
     const allAccounts = [
-      group.mangoCache,
-      oldMangoAccount.publicKey,
+      group.entropyCache,
+      oldEntropyAccount.publicKey,
       ...inBasketOpenOrders,
       ...marketContexts.map((marketContext) => marketContext.market.bids),
       ...marketContexts.map((marketContext) => marketContext.market.asks),
@@ -245,22 +245,22 @@ import {
     const ts = getUnixTs() / 1000;
     const accountInfos = await getMultipleAccounts(connection, allAccounts);
   
-    const cache = new MangoCache(
+    const cache = new EntropyCache(
       accountInfos[0].publicKey,
-      MangoCacheLayout.decode(accountInfos[0].accountInfo.data),
+      EntropyCacheLayout.decode(accountInfos[0].accountInfo.data),
     );
   
-    const mangoAccount = new MangoAccount(
+    const entropyAccount = new EntropyAccount(
       accountInfos[1].publicKey,
-      MangoAccountLayout.decode(accountInfos[1].accountInfo.data),
+      EntropyAccountLayout.decode(accountInfos[1].accountInfo.data),
     );
     const openOrdersAis = accountInfos.slice(2, 2 + inBasketOpenOrders.length);
     for (let i = 0; i < openOrdersAis.length; i++) {
       const ai = openOrdersAis[i];
-      const marketIndex = mangoAccount.spotOpenOrders.findIndex((soo) =>
+      const marketIndex = entropyAccount.spotOpenOrders.findIndex((soo) =>
         soo.equals(ai.publicKey),
       );
-      mangoAccount.spotOpenOrdersAccounts[marketIndex] =
+      entropyAccount.spotOpenOrdersAccounts[marketIndex] =
         OpenOrders.fromAccountInfo(
           ai.publicKey,
           ai.accountInfo,
@@ -297,7 +297,7 @@ import {
   
     return {
       cache,
-      mangoAccount,
+      entropyAccount,
       marketContexts,
     };
   }
@@ -362,30 +362,30 @@ import {
       process.env.ENDPOINT_URL || config.cluster_urls[cluster],
       'processed' as Commitment,
     );
-    const client = new MangoClient(connection, mangoProgramId);
+    const client = new EntropyClient(connection, entropyProgramId);
   
     // load group
-    const mangoGroup = await client.getMangoGroup(mangoGroupKey);
+    const entropyGroup = await client.getEntropyGroup(entropyGroupKey);
   
-    // load mangoAccount
-    let mangoAccount: MangoAccount;
-    if (params.mangoAccountName) {
-      mangoAccount = await loadMangoAccountWithName(
+    // load entropyAccount
+    let entropyAccount: EntropyAccount;
+    if (params.entropyAccountName) {
+      entropyAccount = await loadEntropyAccountWithName(
         client,
-        mangoGroup,
+        entropyGroup,
         payer,
-        params.mangoAccountName,
+        params.entropyAccountName,
       );
-    } else if (params.mangoAccountPubkey) {
-      mangoAccount = await loadMangoAccountWithPubkey(
+    } else if (params.entropyAccountPubkey) {
+      entropyAccount = await loadEntropyAccountWithPubkey(
         client,
-        mangoGroup,
+        entropyGroup,
         payer,
-        new PublicKey(params.mangoAccountPubkey),
+        new PublicKey(params.entropyAccountPubkey),
       );
     } else {
       throw new Error(
-        'Please add mangoAccountName or mangoAccountPubkey to params file',
+        'Please add entropyAccountName or entropyAccountPubkey to params file',
       );
     }
   
@@ -455,15 +455,15 @@ import {
   
     const state = await loadAccountAndMarketState(
       connection,
-      mangoGroup,
-      mangoAccount,
+      entropyGroup,
+      entropyAccount,
       marketContexts,
     );
   
     const stateRefreshInterval = params.stateRefreshInterval || 5000;
     listenAccountAndMarketState(
       connection,
-      mangoGroup,
+      entropyGroup,
       state,
       stateRefreshInterval,
     );
@@ -482,13 +482,13 @@ import {
     process.on('SIGINT', function () {
       console.log('Caught keyboard interrupt. Canceling orders');
       control.isRunning = false;
-      onExit(client, payer, mangoGroup, mangoAccount, marketContexts);
+      onExit(client, payer, entropyGroup, entropyAccount, marketContexts);
     });
   
     while (control.isRunning) {
       // continue;
       try {
-        mangoAccount = state.mangoAccount;
+        entropyAccount = state.entropyAccount;
   
         let j = 0;
         let tx = new Transaction();
@@ -507,9 +507,9 @@ import {
             ftxFundingRate = solMarketContext.fundingRate;
           }
           const instrSet = makeMarketUpdateInstructions(
-            mangoGroup,
+            entropyGroup,
             state.cache,
-            mangoAccount,
+            entropyAccount,
             marketContexts[i],
             ftxBook,
             ftxFundingRate
@@ -566,9 +566,9 @@ import {
   }
   
   function makeMarketUpdateInstructions(
-    group: MangoGroup,
-    cache: MangoCache,
-    mangoAccount: MangoAccount,
+    group: EntropyGroup,
+    cache: EntropyCache,
+    entropyAccount: EntropyAccount,
     marketContext: MarketContext,
     ftxBook: TardisBook,
     ftxFundingRate: number
@@ -620,8 +620,8 @@ import {
   
     const fairValue = (fairBid + fairBid) / 2;
     const ftxSpread = (fairAsk - fairBid) / fairValue;
-    const equity = mangoAccount.computeValue(group, cache).toNumber();
-    const perpAccount = mangoAccount.perpAccounts[marketIndex];
+    const equity = entropyAccount.computeValue(group, cache).toNumber();
+    const perpAccount = entropyAccount.perpAccounts[marketIndex];
      
     // TODO look at event queue as well for unprocessed fills
     const basePos = perpAccount.getBasePositionUi(market);
@@ -675,7 +675,7 @@ import {
     const bestBid = bids.getBest();
     const bestAsk = asks.getBest();
   
-    console.log('Mango best bid : ', bestBid?.price.toString(), ', Mango best ask: ', bestAsk?.price.toString() );
+    console.log('Entropy best bid : ', bestBid?.price.toString(), ', Entropy best ask: ', bestAsk?.price.toString() );
     const bookAdjBid =
       bestAsk !== undefined
         ? BN.min(bestAsk.priceLots.sub(ONE_BN), modelBidPrice)
@@ -691,8 +691,8 @@ import {
   
     let moveOrders = false;
     if (marketContext.lastBookUpdate >= marketContext.lastOrderUpdate) {
-      // if mango book was updated recently, then MangoAccount was also updated
-      const openOrders = mangoAccount
+      // if entropy book was updated recently, then EntropyAccount was also updated
+      const openOrders = entropyAccount
         .getPerpOpenOrders()
         .filter((o) => o.marketIndex === marketIndex);
       moveOrders = openOrders.length < 2 || openOrders.length > 2;
@@ -703,7 +703,7 @@ import {
           Math.abs(o.price.toNumber() / refPrice.toNumber() - 1) > requoteThresh;
       }
     } else {
-      // If order was updated before MangoAccount, then assume that sent order already executed
+      // If order was updated before EntropyAccount, then assume that sent order already executed
       moveOrders =
         moveOrders ||
         Math.abs(marketContext.sentBidPrice / bookAdjBid.toNumber() - 1) >
@@ -734,16 +734,16 @@ import {
     ) {
       console.log(`${marketContext.marketName} taking best bid spammer`);
       const takerSell = makePlacePerpOrderInstruction(
-        mangoProgramId,
+        entropyProgramId,
         group.publicKey,
-        mangoAccount.publicKey,
+        entropyAccount.publicKey,
         payer.publicKey,
         cache.publicKey,
         market.publicKey,
         market.bids,
         market.asks,
         market.eventQueue,
-        mangoAccount.getOpenOrdersKeysInBasket(),
+        entropyAccount.getOpenOrdersKeysInBasket(),
         bestBid.priceLots,
         new BN(random_size),
         new BN(Date.now()),
@@ -758,16 +758,16 @@ import {
     ) {
       console.log(`${marketContext.marketName} taking best ask spammer`);
       const takerBuy = makePlacePerpOrderInstruction(
-        mangoProgramId,
+        entropyProgramId,
         group.publicKey,
-        mangoAccount.publicKey,
+        entropyAccount.publicKey,
         payer.publicKey,
         cache.publicKey,
         market.publicKey,
         market.bids,
         market.asks,
         market.eventQueue,
-        mangoAccount.getOpenOrdersKeysInBasket(),
+        entropyAccount.getOpenOrdersKeysInBasket(),
         bestAsk.priceLots,
         new BN(random_size),
         new BN(Date.now()),
@@ -794,15 +794,15 @@ import {
   }
   
   async function onExit(
-    client: MangoClient,
+    client: EntropyClient,
     payer: Account,
-    group: MangoGroup,
-    mangoAccount: MangoAccount,
+    group: EntropyGroup,
+    entropyAccount: EntropyAccount,
     marketContexts: MarketContext[],
   ) {
     await sleep(control.interval);
-    mangoAccount = await client.getMangoAccount(
-      mangoAccount.publicKey,
+    entropyAccount = await client.getEntropyAccount(
+      entropyAccount.publicKey,
       group.dexProgramId,
     );
     let tx = new Transaction();
@@ -810,9 +810,9 @@ import {
     for (let i = 0; i < marketContexts.length; i++) {
       const mc = marketContexts[i];
       const cancelAllInstr = makeCancelAllPerpOrdersInstruction(
-        mangoProgramId,
+        entropyProgramId,
         group.publicKey,
-        mangoAccount.publicKey,
+        entropyAccount.publicKey,
         payer.publicKey,
         mc.market.publicKey,
         mc.market.bids,
