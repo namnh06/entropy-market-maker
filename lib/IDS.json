@@ -1,0 +1,148 @@
+{
+    "cluster_urls": {
+        "devnet": "https://entropy.devnet.rpcpool.com",
+        "localnet": "http://127.0.0.1:8899",
+        "mainnet": "https://friktion.rpcpool.com/132d5fccfadee1fd0c2fce38aa14",
+        "testnet": "https://testnet.solana.com"
+    },
+    "groups": [
+        {
+            "cluster": "mainnet",
+            "name": "mainnet.2",
+            "publicKey": "EAhqxJge6VCXH5KaPEmDzz4DoKGfHgCotmpC8xGvBju2",
+            "quoteSymbol": "USDC",
+            "entropyProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
+            "serumProgramId": "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
+            "tokens": [
+                {
+                    "symbol": "USDC",
+                    "mintKey": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                    "decimals": 6,
+                    "rootKey": "7zFMQu1Tmz38kKC8Vxv42Hd8BLaUm2hV4Gm7Vr5PhFTv",
+                    "nodeKeys": [
+                        "2d1T5h2qMv96BFkDwrdhm31WgQjXmr7mVoF5H6UomVHP"
+                    ]
+                }
+            ],
+            "oracles": [
+                {
+                    "symbol": "BTC^2",
+                    "publicKey": "3HtmwdXJPAdMZ73fTGeCFgbDQZGLZWpmsm3JAB5quGJN"
+                },
+                {
+                    "symbol": "BTC",
+                    "publicKey": "GVXRSBjFk6e6J3NbVPXohDJetcTjaeeuykUpbQF8UoMU"
+                },
+                {
+                    "symbol": "BTC_1D_IV",
+                    "publicKey": "57HtzNrNGP7LtzsdRbmFqj5jgHUKL2HR2wnrPSrd4Qyu"
+                }
+            ],
+            "perpMarkets": [
+                {
+                    "name": "BTC^2-PERP",
+                    "publicKey": "HTrVoLyfjS3WbvTdSemAHdtHYv4MYPg3WdXuqxKDGNsu",
+                    "baseSymbol": "BTC^2",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 0,
+                    "bidsKey": "EgC57KizsKLauEiJQsGuFhAtN9iSRVNM3U4nCP9vM8gV",
+                    "asksKey": "YiQ1BJTqHEsP9hEN2n3L5WAd2sN4xCPBZiQkwNnszDu",
+                    "eventsKey": "FfLGiPaCBiXFK1A82zF8TyoKAjGHyQtx71m6oj4SSH1z"
+                },
+                {
+                    "name": "BTC-PERP",
+                    "publicKey": "9GE4Q4RR6jTXZSGMf9GK4purKxSPVgRCVM7WLqxi8k8i",
+                    "baseSymbol": "BTC",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 1,
+                    "bidsKey": "C8TndWTrQKwsp3W1Mihe8RFT4DyeXQJgJz1vuBhRdRt2",
+                    "asksKey": "4cnGzmH3hrAPDQe9wYd51zvH1mPc7KyYP53s1nZp8jHP",
+                    "eventsKey": "3ekhcdW9h5GRrpYVu9nRAmG6nXtNGru6wPCSRg5vXtFX"
+                },
+                {
+                    "name": "BTC_1D_IV-PERP",
+                    "publicKey": "GkRz4Gpz9WSvJYZ2Qso37oHGvXubzp6PuBMAeFggbLq9",
+                    "baseSymbol": "BTC_1D_IV",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 2,
+                    "bidsKey": "GwLXeiFmNGWYdcfGecqtxKhyxf2zmnC3st96wdyEyE9W",
+                    "asksKey": "HvByfoJ2JiCJJp9wGdkoPwTyjTCscTBo6LQKFYuSUUgy",
+                    "eventsKey": "5i5pdq2wGadTxFHg6HgqYk4hF6d5Sx1cxc4PsAWLT72S"
+                }
+            ],
+            "spotMarkets": []
+        },
+        {
+            "cluster": "mainnet",
+            "name": "mainnet.1",
+            "publicKey": "DXkAY6dXDuY13K1gd7WwW6ZMC4nH1GC9MoCDsWRWmooP",
+            "quoteSymbol": "USDC",
+            "entropyProgramId": "FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5",
+            "serumProgramId": "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
+            "tokens": [
+                {
+                    "symbol": "USDC",
+                    "mintKey": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                    "decimals": 6,
+                    "rootKey": "DMd9YT4sA3GqPrD6LAYvPbPv838mUvu5qJm4KUsPcwGy",
+                    "nodeKeys": [
+                        "pNh1Y9XcyyN5MCGEZx9akx4kPjLMqt37kSjMUw33vcr"
+                    ]
+                }
+            ],
+            "oracles": [
+                {
+                    "symbol": "BTC^2",
+                    "publicKey": "3HtmwdXJPAdMZ73fTGeCFgbDQZGLZWpmsm3JAB5quGJN"
+                },
+                {
+                    "symbol": "BTC",
+                    "publicKey": "GVXRSBjFk6e6J3NbVPXohDJetcTjaeeuykUpbQF8UoMU"
+                },
+                {
+                    "symbol": "BTC_1D_IV",
+                    "publicKey": "57HtzNrNGP7LtzsdRbmFqj5jgHUKL2HR2wnrPSrd4Qyu"
+                }
+            ],
+            "perpMarkets": [
+                {
+                    "name": "BTC^2-PERP",
+                    "publicKey": "FWYeP5hyehUxCGJPHjft3irRB27wtsm8FRmzzFP5izEH",
+                    "baseSymbol": "BTC^2",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 0,
+                    "bidsKey": "vtKQ858hVvd2tHBr5hyGdX5gmrrtULeS9E4DXApRSdQ",
+                    "asksKey": "73NL3e1LxpNGxKs4TVA4CJzeopmt9evKGmrJocbrqpgy",
+                    "eventsKey": "98g9CJQka7oYN8nNAowN7TRv2WLiUWJfM44jUgKYFva4"
+                },
+                {
+                    "name": "BTC-PERP",
+                    "publicKey": "A1jnkjr4jgWnEhjYeLt4QyrrQeDEhJ96oAyKXinVHYEY",
+                    "baseSymbol": "BTC",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 1,
+                    "bidsKey": "68b6JcFSYyrkmoaNqdNMqnLQr5CTv7Jf9gMcptR9FEni",
+                    "asksKey": "Gj3NzV9133c13ieTwBv1ij1BmF6a61fa5KhFrxE4Um71",
+                    "eventsKey": "4QEesuxZJq5pSFAv7HsSYRiawXZHcd3CVjQibq7uuBeA"
+                },
+                {
+                    "name": "BTC_1D_IV-PERP",
+                    "publicKey": "2dRsK2FxPJ2JnpBuVGJpgcAHEpq1xSUVQ8NFeYDmYfaB",
+                    "baseSymbol": "BTC_1D_IV",
+                    "baseDecimals": 6,
+                    "quoteDecimals": 6,
+                    "marketIndex": 2,
+                    "bidsKey": "hmZGUCDGfKffNYmJvFJ7Dy8cD2SY9YyeeAHrGpWR54x",
+                    "asksKey": "Cifj17Uvf7aGiVKcWFCAGqgwprr52pSdPV7sefC1NiUC",
+                    "eventsKey": "eDtTZfdonFSSm2KDbJnDuo4rxgYL9dwqB1YSvbNjKos"
+                }
+            ],
+            "spotMarkets": []
+        }
+    ]
+}
