@@ -61,172 +61,12 @@ const params = JSON.parse(
   ),
 );
 
-  const payer = new Account(
-    JSON.parse(
-      fs.readFileSync(
-        process.env.KEYPAIR || os.homedir() + '/.config/solana/taker-authority.json',
-        'utf-8',
-      ),
+const payer = new Account(
+  JSON.parse(
+    fs.readFileSync(
+      process.env.KEYPAIR || os.homedir() + '/.config/solana/id.json',
+      'utf-8',
     ),
-  );
-  
-  
-  const config = new Config(IDS);
-  
-  const groupIds = config.getGroupWithName(params.group) as GroupConfig;
-  if (!groupIds) {
-    throw new Error(`Group ${params.group} not found`);
-  }
-  const cluster = groupIds.cluster as Cluster;
-  console.log("cluster: ", cluster);
-  const entropyProgramId = new PublicKey("FcfzrnurPFXwxbx332wScnD5P86DwhpLpBbQsnr6LcH5");
-  // const entropyProgramId = groupIds.entropyProgramId;
-  const entropyGroupKey = groupIds.publicKey;
-  console.log("programId: ",  entropyProgramId);
-  const control = { isRunning: true, interval: params.interval, take_pct_limit: params.take_max_sizePerc, take_max_sizePerc: params.take_max_sizePerc, buy_sell_skew: params.buy_sell_skew};
-  
-  type MarketContext = {
-    marketName: string;
-    params: any;
-    config: PerpMarketConfig;
-    market: PerpMarket;
-    marketIndex: number;
-    bids: BookSide;
-    asks: BookSide;
-    lastBookUpdate: number;
-  
-    tardisBook: TardisBook;
-    lastTardisUpdate: number;
-  
-    fundingRate: number;
-    lastTardisFundingRateUpdate: number;
-  
-    sequenceAccount: PublicKey;
-    sequenceAccountBump: number;
-  
-    sentBidPrice: number;
-    sentAskPrice: number;
-    lastOrderUpdate: number;
-    lastIOCside: number;
-  };
-  
-  function getRandomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.random() * (max - min + 1) + min;
-  }
-  
-  /**
-   * Periodically fetch the account and market state
-   */
-  async function listenAccountAndMarketState(
-    connection: Connection,
-    group: EntropyGroup,
-    state: {
-      cache: EntropyCache;
-      entropyAccount: EntropyAccount;
-      marketContexts: MarketContext[];
-    },
-    stateRefreshInterval: number,
-  ) {
-    while (control.isRunning) {
-      try {
-        const inBasketOpenOrders = state.entropyAccount
-          .getOpenOrdersKeysInBasket()
-          .filter((pk) => !pk.equals(zeroKey));
-  
-        const allAccounts = [
-          group.entropyCache,
-          state.entropyAccount.publicKey,
-          ...inBasketOpenOrders,
-          ...state.marketContexts.map(
-            (marketContext) => marketContext.market.bids,
-          ),
-          ...state.marketContexts.map(
-            (marketContext) => marketContext.market.asks,
-          ),
-        ];
-  
-        const ts = getUnixTs() / 1000;
-        const accountInfos = await getMultipleAccounts(connection, allAccounts);
-  
-        const cache = new EntropyCache(
-          accountInfos[0].publicKey,
-          EntropyCacheLayout.decode(accountInfos[0].accountInfo.data),
-        );
-  
-        const entropyAccount = new EntropyAccount(
-          accountInfos[1].publicKey,
-          EntropyAccountLayout.decode(accountInfos[1].accountInfo.data),
-        );
-        const openOrdersAis = accountInfos.slice(
-          2,
-          2 + inBasketOpenOrders.length,
-        );
-        for (let i = 0; i < openOrdersAis.length; i++) {
-          const ai = openOrdersAis[i];
-          const marketIndex = entropyAccount.spotOpenOrders.findIndex((soo) =>
-            soo.equals(ai.publicKey),
-          );
-          entropyAccount.spotOpenOrdersAccounts[marketIndex] =
-            OpenOrders.fromAccountInfo(
-              ai.publicKey,
-              ai.accountInfo,
-              group.dexProgramId,
-            );
-        }
-  
-        accountInfos
-          .slice(
-            2 + inBasketOpenOrders.length,
-            2 + inBasketOpenOrders.length + state.marketContexts.length,
-          )
-          .forEach((ai, i) => {
-            state.marketContexts[i].bids = new BookSide(
-              ai.publicKey,
-              state.marketContexts[i].market,
-              BookSideLayout.decode(ai.accountInfo.data),
-            );
-          });
-  
-        accountInfos
-          .slice(
-            2 + inBasketOpenOrders.length + state.marketContexts.length,
-            2 + inBasketOpenOrders.length + 2 * state.marketContexts.length,
-          )
-          .forEach((ai, i) => {
-            state.marketContexts[i].lastBookUpdate = ts;
-            state.marketContexts[i].asks = new BookSide(
-              ai.publicKey,
-              state.marketContexts[i].market,
-              BookSideLayout.decode(ai.accountInfo.data),
-            );
-          });
-  
-        state.entropyAccount = entropyAccount;
-        state.cache = cache;
-      } catch (e) {
-        console.error(
-          `${new Date().getUTCDate().toString()} failed when loading state`,
-          e,
-        );
-      } finally {
-        await sleep(stateRefreshInterval);
-      }
-    }
-  }
-  
-  /**
-   * Load EntropyCache, EntropyAccount and Bids and Asks for all PerpMarkets using only
-   * one RPC call.
-   */
-  async function loadAccountAndMarketState(
-    connection: Connection,
-    group: EntropyGroup,
-    oldEntropyAccount: EntropyAccount,
-    marketContexts: MarketContext[],
-  ): Promise<{
-=======
   ),
 );
 
@@ -284,7 +124,6 @@ async function listenAccountAndMarketState(
   connection: Connection,
   group: EntropyGroup,
   state: {
->>>>>>> 7e89c1706bf2cd4f29c5552e45e9c25341a82512
     cache: EntropyCache;
     entropyAccount: EntropyAccount;
     marketContexts: MarketContext[];
@@ -991,11 +830,6 @@ async function onExit(
   txids.forEach((txid) => {
     console.log(`cancel successful: ${txid.toString()}`);
   });
-
-  
-  startMarketMaker();
-  
-
   process.exit();
 }
 
@@ -1016,4 +850,3 @@ process.on('unhandledRejection', function (err, promise) {
 });
 
 startMarketMaker();
->>>>>>> 7e89c1706bf2cd4f29c5552e45e9c25341a82512
