@@ -64,7 +64,7 @@ import {
   const payer = new Account(
     JSON.parse(
       fs.readFileSync(
-        process.env.KEYPAIR || os.homedir() + '/.config/solana/id.json',
+        process.env.KEYPAIR || os.homedir() + '/.config/solana/taker-authority.json',
         'utf-8',
       ),
     ),
