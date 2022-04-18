@@ -61,15 +61,6 @@ const params = JSON.parse(
   ),
 );
 
-const payer = new Account(
-  JSON.parse(
-    fs.readFileSync(
-      process.env.KEYPAIR || os.homedir() + '/.config/solana/id.json',
-      'utf-8',
-    ),
-<<<<<<< HEAD
-  );
-  
   const payer = new Account(
     JSON.parse(
       fs.readFileSync(
@@ -1000,11 +991,11 @@ async function onExit(
   txids.forEach((txid) => {
     console.log(`cancel successful: ${txid.toString()}`);
   });
-<<<<<<< HEAD
+
   
   startMarketMaker();
   
-=======
+
   process.exit();
 }
 
