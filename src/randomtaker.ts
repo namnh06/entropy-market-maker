@@ -64,7 +64,7 @@ const params = JSON.parse(
 const payer = new Account(
   JSON.parse(
     fs.readFileSync(
-      process.env.KEYPAIR || os.homedir() + '/.config/solana/id.json',
+      process.env.KEYPAIR || os.homedir() + '/.config/solana/entropy-taker.json',
       'utf-8',
     ),
   ),
