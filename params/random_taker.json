@@ -1,42 +1,42 @@
 {
-    "group": "mainnet.2",
-    "entropyAccountPubkey": "BotWaeUsZ3iMDmADFKgPdEWERKQwRzEij4WykYRDzAnB",
-    "interval": 50000,
-    "take_max_sizePerc": 0.1,
-    "buy_sell_skew": 0.5,
-    "batch": 2,
-    "assets": {
-      "BTC": {
-        "perp": {
-          "sizePerc": 1,
-          "leanCoeff": 0.00025,
-          "bias": 0.0,
-          "requoteThresh": 0.0002,
-          "takeSpammers": true,
-          "spammerCharge": 2
-        }
-      },
-      "BTC^2": {
-        "perp": {
-          "sizePerc": 1,
-          "leanCoeff": 0.0005,
-          "bias": 0.0,
-          "requoteThresh": 0.0002,
-          "takeSpammers": true,
-          "spammerCharge": 2,
-          "disableFtxBook": true
-        }
-      },
-      "BTC_1D_IV": {
-        "perp": {
-          "sizePerc": 1,
-          "leanCoeff": 0.0005,
-          "bias": 0.0,
-          "requoteThresh": 0.0002,
-          "takeSpammers": true,
-          "spammerCharge": 2,
-          "disableFtxBook": true
-        }
+  "group": "mainnet.2",
+  "entropyAccountPubkey": "29rnmnEZVxmEgiF5UpMygUQ4mf3ezv9U3GEd5HpvpM95",
+  "interval": 10000,
+  "take_max_sizePerc": 0.01,
+  "buy_sell_skew": 0.5,
+  "batch": 2,
+  "assets": {
+    "BTC": {
+      "perp": {
+        "sizePerc": 1,
+        "leanCoeff": 0.00025,
+        "bias": 0.0,
+        "requoteThresh": 0.0002,
+        "takeSpammers": true,
+        "spammerCharge": 2
+      }
+    },
+    "BTC^2": {
+      "perp": {
+        "sizePerc": 1,
+        "leanCoeff": 0.0005,
+        "bias": 0.0,
+        "requoteThresh": 0.0002,
+        "takeSpammers": true,
+        "spammerCharge": 2,
+        "disableFtxBook": true
+      }
+    },
+    "BTC_1D_IV": {
+      "perp": {
+        "sizePerc": 1,
+        "leanCoeff": 0.0005,
+        "bias": 0.0,
+        "requoteThresh": 0.0002,
+        "takeSpammers": true,
+        "spammerCharge": 2,
+        "disableFtxBook": true
       }
     }
   }
+}
