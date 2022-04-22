@@ -84,7 +84,7 @@ if (!groupIds) {
 const cluster = groupIds.cluster as Cluster;
 const entropyProgramId = groupIds.entropyProgramId;
 const entropyGroupKey = groupIds.publicKey;
-const control = {isRunning: true, interval: params.interval};
+const control = { isRunning: true, interval: params.interval };
 
 type MarketContext = {
   marketName: string;
@@ -328,12 +328,12 @@ async function listenFtxBooks(marketContexts: MarketContext[]) {
     }
   }
 }
- 
+
 
 /**
  * Long running service that keeps FTX perp funding rates updated via websocket using Tardis
  */
- async function listenFtxFundingRates(marketContexts: MarketContext[]) {
+async function listenFtxFundingRates(marketContexts: MarketContext[]) {
   // console.log('listen ftx funding rates')
   const symbolToContext = Object.fromEntries(
     marketContexts.map((mc) => [mc.marketName, mc]),
@@ -397,7 +397,7 @@ async function fullMarketMaker() {
   const perpMarkets: PerpMarket[] = [];
   const marketContexts: MarketContext[] = [];
 
-  let btcMarketContext : MarketContext | null = null;;
+  let btcMarketContext: MarketContext | null = null;;
   for (const baseSymbol in params.assets) {
     console.log(new Date().toISOString(), 'Spinning market for: ', baseSymbol);
     const perpMarketConfig = getPerpMarketByBaseSymbol(
@@ -469,12 +469,12 @@ async function fullMarketMaker() {
     state,
     stateRefreshInterval,
   );
-  
+
 
   const listenableMarketContexts = marketContexts.filter((context) => {
     // console.log(context.params['disableFtxBook']);
     // console.log(context.params);
-    return  !(context.params.disableFtxBook || false)
+    return !(context.params.disableFtxBook || false)
   });
 
   // console.log('listenable market contexts: ', listenableMarketContexts.map((context) => context.marketName));
@@ -514,7 +514,7 @@ async function fullMarketMaker() {
 
           const IVoraclePrice = IVoraclePriceI8048.toNumber();
           // console.log("BTC_1D_IV Oracle Price: ", IVoraclePrice);
-          
+
           IVFundingOffset = calcFundingFromIV(IVoraclePrice, 7);
           // console.log("IVFundingOffset Oracle Price: ", IVFundingOffset);
 
@@ -525,7 +525,7 @@ async function fullMarketMaker() {
           entropyAccount,
           marketContexts[i],
           ftxBook,
-          ftxFundingRate, 
+          ftxFundingRate,
           IVFundingOffset,
         );
 
@@ -579,7 +579,7 @@ function calcFundingFromIV(
   IVoraclePrice: number,
   days: number
 ): number {
-  return (IVoraclePrice/100)**2/365*days;
+  return (IVoraclePrice / 100) ** 2 / 365 * days;
 }
 
 
@@ -624,14 +624,14 @@ function makeMarketUpdateInstructions(
     // return [];
     ftxBid = new Decimal(oraclePrice).sub(0.01 * oraclePrice).toNumber();
     ftxAsk = new Decimal(oraclePrice).add(0.01 * oraclePrice).toNumber();
-  } 
-  
+  }
+
   // For BTC^2, squre BTC Price and normalize
   if (marketContext.marketName === "BTC^2-PERP") {
-    ftxBid = new Decimal(ftxBid).pow(2).toNumber()/1000000;
-    ftxAsk = new Decimal(ftxAsk).pow(2).toNumber()/1000000;
+    ftxBid = new Decimal(ftxBid).pow(2).toNumber() / 1000000;
+    ftxAsk = new Decimal(ftxAsk).pow(2).toNumber() / 1000000;
     ftxFunding = new Decimal(ftxFundingRate).toNumber();
-  } 
+  }
   else {
   }
 
@@ -642,7 +642,7 @@ function makeMarketUpdateInstructions(
   const ftxSpread = (fairAsk - fairBid) / fairValue;
   const equity = entropyAccount.computeValue(group, cache).toNumber();
   const perpAccount = entropyAccount.perpAccounts[marketIndex];
-   
+
   // TODO look at event queue as well for unprocessed fills
   const basePos = perpAccount.getBasePositionUi(market);
   const fundingBias = ftxFunding || 0;
@@ -664,15 +664,15 @@ function makeMarketUpdateInstructions(
   console.log(new Date().toISOString(), `${marketContext.marketName} lean_adjust: `, lean);
   if (marketContext.marketName === "BTC^2-PERP") {
     console.log(new Date().toISOString(), `${marketContext.marketName} Variance Funding Adjust: `, IVFundingOffset);
-    console.log(new Date().toISOString(), `${marketContext.marketName} Implied Volatility: `, (IVFundingOffset*52)**0.5*100);
+    console.log(new Date().toISOString(), `${marketContext.marketName} Implied Volatility: `, (IVFundingOffset * 52) ** 0.5 * 100);
   }
   // console.log('fundingRate: ', fundingBias);
   // console.log('virginBid: ', fairValue * (1 - edge + lean + bias));
   // console.log('chadBid: ', fairValue * (1 - edge + lean + bias + IVFundingOffset));
   // console.log('IV Funding Bias', IVFundingOffset);
 
-  let bidPrice = fairValue * (1 - edge + lean + bias + 1.5*IVFundingOffset);
-  let askPrice = fairValue * (1 + edge + lean + bias + 3*IVFundingOffset);
+  let bidPrice = fairValue * (1 - edge + lean + bias + 1.5 * IVFundingOffset);
+  let askPrice = fairValue * (1 + edge + lean + bias + 3 * IVFundingOffset);
 
   // console.log('bid notional: ', bidPrice * size);
   // console.log('ask notional: ', askPrice * size);
@@ -736,9 +736,9 @@ function makeMarketUpdateInstructions(
     moveOrders =
       moveOrders ||
       Math.abs(marketContext.sentBidPrice / bookAdjBid.toNumber() - 1) >
-        requoteThresh ||
+      requoteThresh ||
       Math.abs(marketContext.sentAskPrice / bookAdjAsk.toNumber() - 1) >
-        requoteThresh;
+      requoteThresh;
   }
 
   // Start building the transaction
@@ -758,7 +758,7 @@ function makeMarketUpdateInstructions(
     bestBid !== undefined &&
     bestBid.sizeLots.eq(ONE_BN) &&
     bestBid.priceLots.toNumber() / modelAskPrice.toNumber() - 1 >
-      spammerCharge * edge + 0.0005
+    spammerCharge * edge + 0.0005
   ) {
     console.log(`${marketContext.marketName} taking best bid spammer`);
     const takerSell = makePlacePerpOrderInstruction(
@@ -784,7 +784,7 @@ function makeMarketUpdateInstructions(
     bestAsk !== undefined &&
     bestAsk.sizeLots.eq(ONE_BN) &&
     modelBidPrice.toNumber() / bestAsk.priceLots.toNumber() - 1 >
-      spammerCharge * edge + 0.0005
+    spammerCharge * edge + 0.0005
   ) {
     console.log(`${marketContext.marketName} taking best ask spammer`);
     const takerBuy = makePlacePerpOrderInstruction(
@@ -858,7 +858,7 @@ function makeMarketUpdateInstructions(
     instructions.push(placeBidInstr);
     instructions.push(placeAskInstr);
     console.log(
-      new Date().toISOString(), `${marketContext.marketName} Requoting sentBidPx: ${marketContext.sentBidPrice} newBidPx: ${bookAdjBid} sentAskPx: ${marketContext.sentAskPrice} newAskPx: ${bookAdjAsk} spread: ${bookAdjAsk.toNumber()-bookAdjBid.toNumber()}`,
+      new Date().toISOString(), `${marketContext.marketName} Requoting sentBidPx: ${marketContext.sentBidPrice} newBidPx: ${bookAdjBid} sentAskPx: ${marketContext.sentAskPrice} newAskPx: ${bookAdjAsk} spread: ${bookAdjAsk.toNumber() - bookAdjBid.toNumber()}`,
     );
     marketContext.sentBidPrice = bookAdjBid.toNumber();
     marketContext.sentAskPrice = bookAdjAsk.toNumber();
