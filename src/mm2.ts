@@ -56,6 +56,8 @@ import { getMintDecimals } from '../node_modules/@project-serum/serum/lib/market
 import Decimal from "decimal.js";
 import { privateEncrypt } from 'crypto';
 
+console.log("PATH: ", process.env.KEYPAIR);
+
 // Custom quote parameters
 const paramsFileName = process.env.PARAMS || 'quote_params.json';
 const params = JSON.parse(
@@ -69,7 +71,7 @@ const params = JSON.parse(
 const payer = new Account(
   JSON.parse(
     fs.readFileSync(
-      process.env.KEYPAIR || os.homedir() + '/.config/solana/entropy-mainnet-authority.json',
+      process.env.KEYPAIR || os.homedir() + '/.config/solana/mm.json',
       'utf-8',
     ),
   ),
